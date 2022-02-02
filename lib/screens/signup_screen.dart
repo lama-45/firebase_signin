@@ -12,9 +12,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
+              gradient: LinearGradient(colors: [ //background color LinearGradient
             hexStringToColor("CB2B93"),
             hexStringToColor("9546C4"),
             hexStringToColor("5E61F4")
@@ -44,32 +44,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter UserName", Icons.person_outline, false, // call reusableTextField from the reusable widget
                     _userNameTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
+                reusableTextField("Enter Email Id", Icons.person_outline, false, // call reusableTextField from the reusable widget
                     _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outlined, true,
+                reusableTextField("Enter Password", Icons.lock_outlined, true, // call reusableTextField from the reusable widget
                     _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
+                firebaseUIButton(context, "Sign Up", () { //call firebaseUIButton from the reusable widget, Sign up button
+             FirebaseAuth.instance // create Firebase authentication function for email and password
                       .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    print("Created New Account");
+                          email: _emailTextController.text, //email controller
+                          password: _passwordTextController.text) // password controller
+                           // i can add password validation here
+                          //
+                         //
+                        //
+                      .then((value) { // once the  account is created then go to home screen
+                    print("Created New Account"); // print to console
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                        MaterialPageRoute(builder: (context) => HomeScreen())); // take me to home screen after sign up
+                  }).onError((error, stackTrace) { // if error
+                    print("Error ${error.toString()}"); // print the error in console
                   });
                 })
               ],

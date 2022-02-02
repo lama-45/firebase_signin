@@ -17,10 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ElevatedButton(
           child: Text("Logout"),
           onPressed: () {
-            FirebaseAuth.instance.signOut().then((value) {
-              print("Signed Out");
+            FirebaseAuth.instance.signOut().then((value) { // Firebase sign out function
+              print("Signed Out"); //print to console
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()));
+                  MaterialPageRoute(builder: (context) => SignInScreen())); // when Signed Out clicked go back to Sign In Screen
             });
           },
         ),

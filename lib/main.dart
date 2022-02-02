@@ -3,7 +3,7 @@ import 'package:firebase_signin/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // initialize firebase
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
