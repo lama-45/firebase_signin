@@ -43,13 +43,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                   height: 20,
                 ),
                 reusableTextField("Enter Email Id", Icons.person_outline, false,
-                    _emailTextController),
+                    _emailTextController), // should have validation for email here
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Reset Password", () {
+                firebaseUIButton(context, "Reset Password", () { // Reset button using firebaseUIButton function from reusable widget
                   FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: _emailTextController.text)
+                      .sendPasswordResetEmail(email: _emailTextController.text) // using Firebase Auth call sendPasswordResetEmail to send an email to reset the password
                       .then((value) => Navigator.of(context).pop());
                 })
               ],

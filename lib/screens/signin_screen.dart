@@ -41,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false, // call reusableTextField from the reusable widget
+                reusableTextField("Enter Email", Icons.person_outline, false, // call reusableTextField from the reusable widget
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -51,8 +51,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 5,
                 ),
-                forgetPassword(context),
-                firebaseUIButton(context, "Sign In", () { //call firebaseUIButton from the reusable widget, Sign In button
+                forgetPassword(context), // call forgetPassword function after "Enter Password" field to write the "Forgot Password?" and handle it
+                firebaseUIButton(context, "Sign In", () { //call firebaseUIButton from the reusable widget, to make Sign In button
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword( // sign in function
                           email: _emailTextController.text,
@@ -93,19 +93,19 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget forgetPassword(BuildContext context) {
+  Widget forgetPassword(BuildContext context) { // forgetPassword function
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 35,
       alignment: Alignment.bottomRight,
-      child: TextButton(
+      child: TextButton( // text button
         child: const Text(
-          "Forgot Password?",
+          "Forgot Password?", // Forgot Password question
           style: TextStyle(color: Colors.white70),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResetPassword())),
+            context, MaterialPageRoute(builder: (context) => ResetPassword())), // if pressed open Reset password screen
       ),
     );
   }
